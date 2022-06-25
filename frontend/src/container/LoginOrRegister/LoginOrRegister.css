@@ -1,0 +1,72 @@
+
+
+.login-register{
+  min-height: 100vh;
+  background-color: var(--color-light);
+}
+
+.login-register .login-register-body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.login-register .login-register-body .auth-part .forget-password-massage{
+  font-size: 12px;
+  cursor: pointer;
+  transition: var(--transition-element);
+}
+
+.login-register .login-register-body .auth-part .forget-password-massage:hover {
+  color: var(--color-primary);
+}
+
+/* login part */
+
+.login-register .login-register-body .auth-part .remember-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+}
+.login-register .login-register-body .auth-part .login-massages{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.login-register .login-register-body .auth-part{
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #ffffff;
+}
+
+.login-register .login-register-body .auth-part > h4{
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.login-register .login-register-body .auth-part  label{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-weight: 300;
+}
+
+
+/* register part */
+
+.login-register .login-register-body .auth-part .register-name-part {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.login-register .login-register-body .auth-part .register-password-part {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
