@@ -16,13 +16,20 @@ import { Store } from '../../Store'
 
 
 function Nav() {
-  const { state } = useContext(Store)
+  const { state, dispatch: ctxDispatch } = useContext(Store)
   const { cart, userInfo } = state
   const [showNavbar, setShowNavbar] = useState(false)
   const [showSubmenu, setShowSubmenu] = useState(false)
   const [showSearchbox, setShowSearchbox] = useState(false)
   const [showShoppingCart, setShowShoppingCart] = useState(false)
   const [navbar, setNavbar] = useState(false)
+
+
+  const signoutHandler = () => {
+    ctxDispatch({type:'USER_SIGNOUT'})
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingInfos')
+  }
 
   const showNavbarHandler = () => {
     setShowNavbar(!showNavbar)
@@ -65,7 +72,7 @@ function Nav() {
               <span>{cart.cartItems.reduce ((acc,cur) => acc + cur.quantity , 0)}</span>
             </div>
             {
-              userInfo ? (<p>{userInfo.email}</p>) : 
+              userInfo ? (<p onClick={signoutHandler}>{userInfo.email}</p>) : 
               (<Link to='/login-register'>
               <div className="nav-icon user-icon">
                 <FiUsers className='icon' />

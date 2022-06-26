@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LoginOrRegister.css'
 import TitleStyle from '../../components/TitleStyle/TitleStyle'
 import ButtonStyle from '../../components/ButtonStyle/ButtonStyle'
@@ -6,6 +6,10 @@ import Input from '../../components/Input/Input'
 import Preload from '../../components/Preload/Preload'
 import { Store } from '../../Store'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
+
+ 
 function LoginOrRegister() {
 
   const [regEmail, setRegEmail] = useState('')
@@ -16,37 +20,35 @@ function LoginOrRegister() {
   const [logPassword, setLogPassword] = useState('')
   const [regRepeatPassword, setRegRepeatPassword] = useState('')
   const navigate = useNavigate()
-  const {state, dispatch: ctxDispatch}  = useContext(Store)
-  const [user, setUser] = useState('')
+  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const {userInfo} = state
 
+  const loginHandler = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.post('/api/users/signin', {
+        logEmail,
+        logPassword
+      })
 
-  // const registerHandler = async (e) => {
-  //   e.preventDefault()
-  //   if (regPassword !== regRepeatPassword) {
-  //     return 'رمز عبور با هم یکی نیستند'
-  //   }
-  //   try {
+      ctxDispatch({type:'USER_SIGNIN', payload: data})
+      localStorage.setItem('userInfo',JSON.stringify(data))
+    }
+    catch (err) {
+      alert(err.message)
+    }
 
-  //     ctxDispatch({type:'USER_SIGNUP',payload: res.user})
-  //     navigate('/profile')
-  //   }
-  //   catch (err) {
-  //     console.log(err.massage)
-  //   }
-  // }
+  }
 
+  const registerHandler = async () => {
+    console.log('regiser')
+  }
 
-
-  // const loginHandler = async (e) => {
-  //   try {
-  //     e.preventDefault()
-
-      
-  //   }
-  //   catch (err) {
-  //     console.log(err.massage)
-  //   }
-  // }
+  useEffect(() => {
+    if(userInfo){
+      navigate('/')
+    }
+  },[userInfo, navigate])
 
 
   return (

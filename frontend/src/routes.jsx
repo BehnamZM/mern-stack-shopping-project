@@ -6,6 +6,7 @@ import MainProduct from './container/MainProduct/MainProduct'
 import Blog from './container/Blog/Blog'
 import CartPage from './container/CartPage/CartPage'
 import LoginOrRegister from './container/LoginOrRegister/LoginOrRegister'
+import ShippingPage from './container/ShippingPage/ShippingPage'
 
 
 
@@ -17,7 +18,8 @@ let routes = [
   { path: '/products', element: <Products /> },
   { path: '/blog', element: <Blog /> },
   { path: '/cart', element: <CartPage /> },
-  { path: '/Login-register', element: <LoginOrRegister /> },
+  { path: '/shipping', element: <ShippingPage /> },
+  { path: '/login-register', element: <LoginOrRegister /> },
   { path: '/product/:slug', element: <MainProduct /> },
 ]
 

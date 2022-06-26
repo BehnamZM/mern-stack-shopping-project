@@ -35,15 +35,15 @@ function Products() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/products')
-        dispatch({type:'FETCH_SUCCESS', payload: result.data})
-        console.log(result);
+        const result = await axios.get('/api/products');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data});
       } catch (err) {
-        dispatch({type: 'FETCH_FAIL', payload: err.massage})
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="products">
       <div className="products-title">
@@ -69,7 +69,7 @@ function Products() {
           <div className="products-list">
             {
               loading ? <Preload />:
-              error ? (<alert>{error}</alert>) : (
+              error ? (<h3>{error}</h3>) : (
               products.map(product => (
                 <ProductStyle {...product} key={product.id} />)
               ))

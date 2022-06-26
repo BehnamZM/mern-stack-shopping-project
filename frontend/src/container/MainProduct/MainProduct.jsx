@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer} from "react";
 import './MainProduct.css'
 import TitleStyle from '../../components/TitleStyle/TitleStyle'
 import Buttonstyle from '../../components/Buttonstyle/Buttonstyle'
 import ProductStyle from '../../components/ProductStyle/ProductStyle'
-import { Link, useParams, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import MainProductSlider from './MainProductSlider/MainProductSlider'
 import axios from 'axios'
 import Preload from "../../components/Preload/Preload";
@@ -43,10 +43,8 @@ function MainProduct() {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const result = await axios.get(`/api/products/slug/${slug}`)
-        // const selectProduct = result.data.find(item => {
-        //   return item.slug === params.slug
-        // })
-        dispatch({ type: 'FETCH_SUCCESS', payload: selectProduct })
+
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.massage })
       }

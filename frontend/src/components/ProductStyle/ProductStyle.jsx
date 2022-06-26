@@ -9,6 +9,7 @@ import { Store } from '../../Store'
 import axios from 'axios'
 
 function ProductStyle(props) {
+  const {product} = props
 
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const {
@@ -16,7 +17,7 @@ function ProductStyle(props) {
   } = state
 
   const addToCartHandler = async (item) => {
-    const existItem = cartItems.find(item => item.id === props.id)
+    const existItem = cartItems.find(item => item.id === product.id)
     const quantity = existItem ? existItem.quantity + 1 : 1
     const { data } = await axios.get(`/products/${item.id}`)
     if (data.countInStock < quantity) {
@@ -32,16 +33,16 @@ function ProductStyle(props) {
       <div className="product">
         <div className="product-inner">
           <div className="product-img">
-            <img src={props.image} alt={props.slug} />
+            <img src={product.image[0]} alt={product.slug} />
             <div className="product-controls">
               {
-                props.countInStock > 0 &&
+                product.countInStock > 0 &&
                 <div className="add-to-cart product-control-icon" onClick={() => addToCartHandler(props)}>
                   <GiShoppingCart />
                 </div>
               }
 
-              <Link to={`/product/${props.slug}`}>
+              <Link to={`/product/${product.slug}`}>
                 <div className="show-product-details product-control-icon">
                   <RiSearchEyeLine />
                 </div>
@@ -51,18 +52,18 @@ function ProductStyle(props) {
               </div>
             </div>
           </div>
-          <h4 className="product-title">{props.title}</h4>
-          <div className="product-price">{props.price} تومان</div>
+          <h4 className="product-title">{product.title}</h4>
+          <div className="product-price">{product.price} تومان</div>
           <div className="product-rating-and-stock">
             {
-              props.countInStock > 0 ?
+              product.countInStock > 0 ?
                 <p className="Available-in-stock" style={{ color: 'green' }}>موجود در انبار</p> :
                 <p className="Available-in-stock" style={{ color: 'red' }}>ناموجود</p>
             }
 
             <div className="product-rating">
               <GrStar className="product-rating-icon" />
-              <p>{props.rating}</p>
+              <p>{product.rating}</p>
             </div>
           </div>
         </div>

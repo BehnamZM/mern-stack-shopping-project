@@ -17,7 +17,7 @@ function CartPage() {
   } = state
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`https://shopping-website-project-8486a-default-rtdb.firebaseio.com/products/${item.id}.json`)
+    const { data } = await axios.get(`/api/products/${item.id}`)
     if (data.countInStock < quantity) {
       window.alert('در انبار این تعداد موجودی نداریم')
       return;
