@@ -9,6 +9,7 @@ import LoginOrRegister from './container/LoginOrRegister/LoginOrRegister'
 import ShippingPage from './container/ShippingPage/ShippingPage'
 import SelectPayment from './container/SelectPayment/SelectPayment'
 import PlaceOrder from './container/PlaceOrder/PlaceOrder'
+import UserDashbord from './container/UserDashbord/UserDashbord'
 
 
 
@@ -22,6 +23,7 @@ let routes = [
   { path: '/cart', element: <CartPage /> },
   { path: '/shipping', element: <ShippingPage /> },
   { path: '/payment', element: <SelectPayment /> },
+  { path: '/user-profile', element: <UserDashbord /> },
   { path: '/placeorder', element: <PlaceOrder /> },
   { path: '/login-register', element: <LoginOrRegister /> },
   { path: '/product/:slug', element: <MainProduct /> },
