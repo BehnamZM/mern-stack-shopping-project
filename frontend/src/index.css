@@ -21,6 +21,16 @@ body {
 
 }
 
+@media screen and (max-width: 668px){
+  body, html {
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (min-width: 669px) and (max-width: 800px){
+  
+}
+
 :root {
   --color-primary: #abd373;
   --color-secondary: #333333;

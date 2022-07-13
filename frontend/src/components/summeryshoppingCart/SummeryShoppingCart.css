@@ -81,3 +81,25 @@
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1010;
 }
+
+@media screen and (max-width: 568px){
+  .summery-shopping-cart{
+    width: 90%;
+    right: -90%;
+   } 
+    .summery-shopping-cart-show {
+      right: 0;
+    }
+    
+  
+}
+
+@media screen and (min-width: 569px) and (max-width: 800px){
+  .summery-shopping-cart{
+    width: 60%;
+    right: -60%;
+   } 
+    .summery-shopping-cart-show {
+      right: 0;
+    }
+}

@@ -9,7 +9,6 @@ import { Store } from '../../Store'
 import axios from 'axios'
 
 function ProductStyle(props) {
-  const {product} = props
 
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const {
@@ -17,9 +16,9 @@ function ProductStyle(props) {
   } = state
 
   const addToCartHandler = async (item) => {
-    const existItem = cartItems.find(item => item.id === product.id)
+    const existItem = cartItems.find(item => item._id === product._id)
     const quantity = existItem ? existItem.quantity + 1 : 1
-    const { data } = await axios.get(`/products/${item.id}`)
+    const { data } = await axios.get(`/products/${item._id}`)
     if (data.countInStock < quantity) {
       window.alert('در انبار این تعداد موجودی نداریم')
       return;
@@ -33,16 +32,16 @@ function ProductStyle(props) {
       <div className="product">
         <div className="product-inner">
           <div className="product-img">
-            <img src={product.image[0]} alt={product.slug} />
+            <img src={props.image} alt={props.slug} />
             <div className="product-controls">
               {
-                product.countInStock > 0 &&
+                props.countInStock > 0 &&
                 <div className="add-to-cart product-control-icon" onClick={() => addToCartHandler(props)}>
                   <GiShoppingCart />
                 </div>
               }
 
-              <Link to={`/product/${product.slug}`}>
+              <Link to={`/product/${props.slug}`}>
                 <div className="show-product-details product-control-icon">
                   <RiSearchEyeLine />
                 </div>
@@ -52,18 +51,18 @@ function ProductStyle(props) {
               </div>
             </div>
           </div>
-          <h4 className="product-title">{product.title}</h4>
-          <div className="product-price">{product.price} تومان</div>
+          <h4 className="product-title">{props.title}</h4>
+          <div className="product-price">{props.price} تومان</div>
           <div className="product-rating-and-stock">
             {
-              product.countInStock > 0 ?
+              props.countInStock > 0 ?
                 <p className="Available-in-stock" style={{ color: 'green' }}>موجود در انبار</p> :
                 <p className="Available-in-stock" style={{ color: 'red' }}>ناموجود</p>
             }
 
             <div className="product-rating">
               <GrStar className="product-rating-icon" />
-              <p>{product.rating}</p>
+              <p>{props.rating}</p>
             </div>
           </div>
         </div>

@@ -47,3 +47,26 @@
   height: 250px;
   margin-top: 2rem;
 }
+
+
+@media screen and (max-width: 568px){
+  .aside-inner .products-searchbox > input {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .aside-inner .products-searchbox .search-in-products-icon{
+    left: 5%;
+  }
+}
+
+@media screen and (min-width: 569px) and (max-width: 800px){
+  .aside-inner .products-searchbox > input {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .aside-inner .products-searchbox .search-in-products-icon{
+    left: 10%;
+  }
+}

@@ -6,6 +6,7 @@ nav {
   width: 100vw;
   padding: 1rem 0;
   background-color: #ffffff;
+  box-shadow: var(--box-shadow);
 }
 
 /* when srollY is more than 200 => fixed class will be render */
@@ -15,6 +16,7 @@ nav {
   top: 0;
   right: 0;
   z-index: 1000;
+  padding: 0;
 }
 
 nav.fixed-nav{
@@ -163,7 +165,7 @@ nav .navbar>ul li a:hover {
 @media (min-width:789px) {
   .fixed-nav{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   
   .fixed-nav .nav-part-one .call-with-us{
@@ -175,7 +177,7 @@ nav .navbar>ul li a:hover {
 
 @media (max-width:788px) {
   nav {
-    max-height: 60px;
+    padding: 0;
   }
 
   nav .nav-part-one {
@@ -191,8 +193,12 @@ nav .navbar>ul li a:hover {
     top: 0;
     padding: 1rem;
     overflow-x: hidden;
-    transition: var(--transition-element);
+    
     color: #ffffff;
+  }
+
+  nav > .navbar {
+    transition: var(--transition-element);
   }
 
   nav .navbar .close-icon {

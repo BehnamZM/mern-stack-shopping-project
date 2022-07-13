@@ -39,3 +39,15 @@
   margin: 0;
 }
 
+@media screen and (max-width: 568px){
+  .services{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 569px) and (max-width: 800px){
+  .services{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+

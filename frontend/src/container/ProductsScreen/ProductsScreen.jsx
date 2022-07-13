@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
-import './Products.css'
+import './ProductsScreen.css'
 import { FaThList } from 'react-icons/fa'
 import { CgMenuGridR } from 'react-icons/cg'
 import TitleStyle from '../../components/TitleStyle/TitleStyle'
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 }
 
 
-function Products() {
+function ProductsScreen() {
 
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
@@ -35,7 +35,10 @@ function Products() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/products');
+        const result = await axios.get('http://localhost:5000/api/products',
+        {headers: {
+          "access-control-allow-origin" : "*"
+        }});
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data});
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
@@ -53,14 +56,14 @@ function Products() {
         <Sidebar />
         <div className="products-inner">
           <div className="products-controls">
-            <div className="number-of-products">
-              9 محصول از 30 تا
-            </div>
             <div className="show-products-Horizontal">
               <CgMenuGridR />
             </div>
             <div className="show-products-vertical">
               <FaThList />
+            </div>
+            <div className="number-of-products">
+              9 محصول از 30 تا
             </div>
             <div className="sort-products">
               مرتب سازی به صورت پیش فرض
@@ -71,7 +74,7 @@ function Products() {
               loading ? <Preload />:
               error ? (<h3>{error}</h3>) : (
               products.map(product => (
-                <ProductStyle {...product} key={product.id} />)
+                <ProductStyle {...product} key={product._id} />)
               ))
             }
 
@@ -82,4 +85,4 @@ function Products() {
   )
 }
 
-export default Products
+export default ProductsScreen

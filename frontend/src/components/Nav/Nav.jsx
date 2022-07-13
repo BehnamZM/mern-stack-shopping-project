@@ -26,7 +26,7 @@ function Nav() {
 
 
   const signoutHandler = () => {
-    ctxDispatch({type:'USER_SIGNOUT'})
+    ctxDispatch({ type: 'USER_SIGNOUT' })
     localStorage.removeItem('userInfo')
     localStorage.removeItem('shippingInfos')
   }
@@ -61,72 +61,142 @@ function Nav() {
 
   return (
     <>
-      <nav className={navbar ? 'fixed-nav' : ''} style={{ transition: "all .3s ease" }}>
-        <div className="nav-part-one container">
-          <div className="icons-part">
-            <div className="nav-icon menu-icon" onClick={showNavbarHandler}>
-              <TiThMenuOutline className='icon' />
-            </div>
-            <div className="nav-icon shopping-icon" onClick={showShoppingCardHandler}>
-              <HiOutlineShoppingBag className='icon' />
-              <span>{cart.cartItems.reduce ((acc,cur) => acc + cur.quantity , 0)}</span>
-            </div>
-            {
-              userInfo ? (<p onClick={signoutHandler}>{userInfo.email}</p>) : 
-              (<Link to='/login-register'>
-              <div className="nav-icon user-icon">
-                <FiUsers className='icon' />
+      {
+        navbar ? (
+          <nav className={navbar ? 'fixed-nav' : ''} style={{ transition: "all .3s ease" }}>
+            <div className="nav-part-one container">
+              <div className="icons-part">
+                <div className="nav-icon menu-icon" onClick={showNavbarHandler}>
+                  <TiThMenuOutline className='icon' />
+                </div>
+                <div className="nav-icon shopping-icon" onClick={showShoppingCardHandler}>
+                  <HiOutlineShoppingBag className='icon' />
+                  <span>{cart.cartItems.reduce((acc, cur) => acc + cur.quantity, 0)}</span>
+                </div>
+                {
+                  userInfo ? (<p onClick={signoutHandler}>{userInfo.email}</p>) :
+                    (<Link to='/login-register'>
+                      <div className="nav-icon user-icon">
+                        <FiUsers className='icon' />
+                      </div>
+                    </Link>)
+                }
+
+                <div className="nav-icon search-icon" onClick={showSearchboxHandler}>
+                  <BsSearch className='icon' />
+                </div>
               </div>
-            </Link>)
-            }
-            
-            <div className="nav-icon search-icon" onClick={showSearchboxHandler}>
-              <BsSearch className='icon' />
+
+              <div className={showNavbar ? 'navbar show'
+                : 'navbar hidden'}>
+                <VscClose onClick={showNavbarHandler} className="close-icon" />
+                <ul>
+                  <li>
+                    <Link to="/">خانه</Link>
+                    {/* <IoIosArrowDown className='submenu-icon' /> */}
+                  </li>
+                  <li
+                    className='product-link'
+                    onMouseEnter={showSubmenuHandler}
+                    onMouseLeave={showSubmenuHandler}>
+                    <Link to="/products">فروشگاه</Link>
+                    <IoIosArrowDown
+                      className='submenu-icon'
+                      onClick={showSubmenuHandler} />
+
+                    <Dropdown className='dropdown' show={showSubmenu} />
+                  </li>
+                  <li>
+                    <Link to="/about">درباره ما</Link>
+                    {/* <IoIosArrowDown className='submenu-icon' /> */}
+                  </li>
+                  <li>
+                    <Link to="/blog">بلاگ</Link>
+                    {/* <IoIosArrowDown className='submenu-icon' /> */}
+                  </li>
+                  <li>
+                    <Link to="/contact">ارتباط با ما</Link>
+                    {/* <IoIosArrowDown className='submenu-icon' /> */}
+                  </li>
+                </ul>
+              </div>
+              <div className="logo-part">
+                <img src={logo} />
+              </div>
             </div>
-          </div>
-          <div className="logo-part">
-            <img src={logo} />
-          </div>
-          <div className="call-with-us">
-            <span>+98 9201236547</span>
-            <FiPhoneCall className="call-icon" />
-          </div>
-        </div>
 
-        <div className={showNavbar ? 'navbar show'
-          : 'navbar hidden'}>
-          <VscClose onClick={showNavbarHandler} className="close-icon" />
-          <ul>
-            <li>
-              <Link to="/">خانه</Link>
-              <IoIosArrowDown className='submenu-icon' />
-            </li>
-            <li
-              className='product-link'
-              onMouseEnter={showSubmenuHandler}
-              onMouseLeave={showSubmenuHandler}>
-              <Link to="/products">فروشگاه</Link>
-              <IoIosArrowDown
-                className='submenu-icon'
-                onClick={showSubmenuHandler} />
 
-              <Dropdown className='dropdown' show={showSubmenu} />
-            </li>
-            <li>
-              <Link to="/about">درباره ما</Link>
-              <IoIosArrowDown className='submenu-icon' />
-            </li>
-            <li>
-              <Link to="/blog">بلاگ</Link>
-              <IoIosArrowDown className='submenu-icon' />
-            </li>
-            <li>
-              <Link to="/contact">ارتباط با ما</Link>
-              <IoIosArrowDown className='submenu-icon' />
-            </li>
-          </ul>
-        </div>
-      </nav>
+          </nav>
+        ) : (
+          <nav className={navbar ? 'fixed-nav' : ''} style={{ transition: "all .3s ease" }}>
+            <div className="nav-part-one container">
+              <div className="icons-part">
+                <div className="nav-icon menu-icon" onClick={showNavbarHandler}>
+                  <TiThMenuOutline className='icon' />
+                </div>
+                <div className="nav-icon shopping-icon" onClick={showShoppingCardHandler}>
+                  <HiOutlineShoppingBag className='icon' />
+                  <span>{cart.cartItems.reduce((acc, cur) => acc + cur.quantity, 0)}</span>
+                </div>
+                {
+                  userInfo ? (<p onClick={signoutHandler}>{userInfo.email}</p>) :
+                    (<Link to='/login-register'>
+                      <div className="nav-icon user-icon">
+                        <FiUsers className='icon' />
+                      </div>
+                    </Link>)
+                }
+
+                <div className="nav-icon search-icon" onClick={showSearchboxHandler}>
+                  <BsSearch className='icon' />
+                </div>
+              </div>
+              <div className="logo-part">
+                <img src={logo} />
+              </div>
+              <div className="call-with-us">
+                <span>+98 9201236547</span>
+                <FiPhoneCall className="call-icon" />
+              </div>
+            </div>
+
+            <div className={showNavbar ? 'navbar show'
+              : 'navbar hidden'}>
+              <VscClose onClick={showNavbarHandler} className="close-icon" />
+              <ul>
+                <li>
+                  <Link to="/">خانه</Link>
+                  <IoIosArrowDown className='submenu-icon' />
+                </li>
+                <li
+                  className='product-link'
+                  onMouseEnter={showSubmenuHandler}
+                  onMouseLeave={showSubmenuHandler}>
+                  <Link to="/products">فروشگاه</Link>
+                  <IoIosArrowDown
+                    className='submenu-icon'
+                    onClick={showSubmenuHandler} />
+
+                  <Dropdown className='dropdown' show={showSubmenu} />
+                </li>
+                <li>
+                  <Link to="/about">درباره ما</Link>
+                  <IoIosArrowDown className='submenu-icon' />
+                </li>
+                <li>
+                  <Link to="/blog">بلاگ</Link>
+                  <IoIosArrowDown className='submenu-icon' />
+                </li>
+                <li>
+                  <Link to="/contact">ارتباط با ما</Link>
+                  <IoIosArrowDown className='submenu-icon' />
+                </li>
+              </ul>
+            </div>
+          </nav>
+        )
+      }
+
       <Searchbox show={showSearchbox} click={showSearchboxHandler} />
       <SummeryshoppingCart show={showShoppingCart} click={showShoppingCardHandler} />
     </>

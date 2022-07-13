@@ -57,9 +57,9 @@ function MainProduct() {
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const {cart} = state
   const addToCartHandler =async () => {
-    const existItem = cart.cartItems.find(item => item.id === product.id)
+    const existItem = cart.cartItems.find(item => item._id === product._id)
     const quantity = existItem ? existItem.quantity + 1 : 1
-    const {data} =await axios.get(`/api/products/${product.id}`)
+    const {data} =await axios.get(`/api/products/${product._id}`)
     if(data.countInStock < quantity) {
       window.alert('در انبار این تعداد موجودی نداریم')
       return;

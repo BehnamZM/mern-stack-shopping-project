@@ -1,33 +1,53 @@
 .dropdown-list {
-  width: 200px;
+  width: 90vw;
   display: flex;
-  flex-direction: column;
-  background-color: #eee;
+  height: fit-content;
+  justify-content: space-between;
+  background-color: #fff;
   border-radius: 5px;
   padding: 0;
   position: absolute;
-  bottom: -930%;
-  right: -50%;
+  bottom: -1200%;
+  right: -600%;
   transition: var(--transition-element);
-
-
+  box-shadow: var(--box-shadow);
 }
+
+.dropdown-list h3 {
+  font-weight: 200;
+}
+
 
 .dropdown-list .dropdown-item {
   text-align: center;
   padding: 1rem 0;
   width: 100%;
-  border-bottom: 1px solid #acabab;
   transition: var(--transition-element);
 }
 
 .dropdown-list .dropdown-item .dropdown-link {
   width: 100%;
-
+  font-size: 14px;
+  font-weight: 900;
 }
 
-.dropdown-list .dropdown-item:hover {
-  background-color: #d3d4d4;
+
+.dropdown-img{
+  width: 200px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.dropdown-img img{
+  width: 100%;
+  height: 90%;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: var(--box-shadow);
+  
 }
 
 @media (min-width: 789px) {
@@ -43,6 +63,25 @@
     z-index: 100;
     transform: translateY(0);
   }
+
+  .dropdown-list .dropdown-item{
+    position: relative;
+  }
+
+  .dropdown-list .dropdown-item .dropdown-link::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    transition: var(--transition-element);
+  }
+  .dropdown-list .dropdown-item .dropdown-link:hover::after{
+    width: 100%;
+  }
+  
 }
 
 @media (max-width:788px) {
@@ -57,6 +96,13 @@
     padding-right: 1rem;
     max-height: 0;
     overflow: hidden;
+    flex-direction: column;
+    box-shadow: none;
+    gap: 1rem;
+  }
+
+  .dropdown-list ul {
+    padding: 0;
   }
 
   .show-submenu {
@@ -70,5 +116,9 @@
 
   .dropdown-list .dropdown-item .dropdown-link {
     text-align: start;
+  }
+
+  .dropdown-img{
+    display: none;
   }
 }

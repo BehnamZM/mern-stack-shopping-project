@@ -1,17 +1,15 @@
-
-
-.login-register{
+.login-register {
   min-height: 100vh;
   background-color: var(--color-light);
 }
 
-.login-register .login-register-body{
+.login-register .login-register-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.login-register .login-register-body .auth-part .forget-password-massage{
+.login-register .login-register-body .auth-part .forget-password-massage {
   font-size: 12px;
   cursor: pointer;
   transition: var(--transition-element);
@@ -29,13 +27,15 @@
   align-items: center;
   font-size: 12px;
 }
-.login-register .login-register-body .auth-part .login-massages{
+
+.login-register .login-register-body .auth-part .login-massages {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
 }
-.login-register .login-register-body .auth-part{
+
+.login-register .login-register-body .auth-part {
   box-shadow: var(--box-shadow);
   padding: 2rem;
   display: flex;
@@ -44,12 +44,12 @@
   background-color: #ffffff;
 }
 
-.login-register .login-register-body .auth-part > h4{
+.login-register .login-register-body .auth-part>h4 {
   font-size: 20px;
   font-weight: 900;
 }
 
-.login-register .login-register-body .auth-part  label{
+.login-register .login-register-body .auth-part label {
   display: flex;
   flex-direction: column;
   gap: .3rem;
@@ -70,3 +70,29 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+
+@media screen and (max-width: 568px) {
+  .login-register .login-register-body {
+    grid-template-columns: 1fr;
+    margin-bottom: 2rem;
+  }
+
+  .login-register .login-register-body .auth-part {
+    padding: 10px;
+  }
+
+  .login-register .login-register-body .auth-part .register-name-part {
+    grid-template-columns: 1fr;
+  }
+
+  .login-register .login-register-body .auth-part .register-password-part {
+    grid-template-columns: 1fr;
+  }
+}
+
+  @media screen and (min-width: 569px) and (max-width: 800px) {
+    .login-register .login-register-body {
+      grid-template-columns: 1fr;
+      margin-bottom: 2rem;
+    }
+  }
